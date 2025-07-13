@@ -440,9 +440,13 @@ fn run_test_suite(
 
         if test.edition <= edition {
             if verbose != 0 {
-                println!("Test loaded, starting...");
+                print!("Test loaded, starting...");
             }
-            test.run(&harness, verbose, optimizer_options, console);
+            let result = test.run(&harness, verbose, optimizer_options, console);
+            if result.result != TestOutcomeResult::Passed {
+                println!();
+                println!("{}", result.result_text);
+            }
         } else {
             println!(
                 "Minimum spec edition of test is bigger than the specified edition. Skipping."

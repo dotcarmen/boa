@@ -1,3 +1,6 @@
+[alias]
+ecmatest = "run --bin boa_tester --release --"
+
 [target.wasm32-unknown-unknown]
 rustflags = ['--cfg', 'getrandom_backend="wasm_js"']
 
